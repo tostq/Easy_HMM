@@ -147,15 +147,15 @@ class _BaseHMM():
         # 状态序列预处理，将单个状态转换为1-to-k的形式
         # 判断是否已知隐藏状态
         if Z_seq==list():
-            Z = []
+            Z = []  # 初始化状态序列list
+            for n in range(X_num):
+                Z.append(list(np.ones((len(X[n]), self.n_state))))
+        else:
+			Z = []
             for n in range(X_num):
                 Z.append(np.zeros((len(X[n]),self.n_state)))
                 for i in range(len(Z[n])):
                     Z[n][i][int(Z_seq[n][i])] = 1
-        else:
-            Z = []  # 初始化状态序列list
-            for n in range(X_num):
-                Z.append(list(np.ones((len(X[n]), self.n_state))))
 
         for e in range(self.n_iter):  # EM步骤迭代
             # 更新初始概率过程
@@ -184,7 +184,7 @@ class _BaseHMM():
                 b_start_prob += b_post_state[n][0] # 批量累积初始概率
 
             # M步骤，估计参数，最好不要让初始概率都为0出现，这会导致alpha也为0
-            b_start_prob += 0.00001*np.ones(self.n_state)
+            b_start_prob += 0.001*np.ones(self.n_state)
             self.start_prob = b_start_prob / np.sum(b_start_prob)
             b_post_adj_state += 0.001
             for k in range(self.n_state):
