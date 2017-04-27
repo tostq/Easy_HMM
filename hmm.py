@@ -151,7 +151,7 @@ class _BaseHMM():
             for n in range(X_num):
                 Z.append(list(np.ones((len(X[n]), self.n_state))))
         else:
-			Z = []
+            Z = []
             for n in range(X_num):
                 Z.append(np.zeros((len(X[n]),self.n_state)))
                 for i in range(len(Z[n])):
