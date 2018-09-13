@@ -160,7 +160,7 @@ class _BaseHMM():
         for e in range(self.n_iter):  # EM步骤迭代
             # 更新初始概率过程
             #  E步骤
-            print "iter: ", e
+            print("iter: ", e)
             b_post_state = []  # 批量累积：状态的后验概率，类型list(array)
             b_post_adj_state = np.zeros((self.n_state, self.n_state)) # 批量累积：相邻状态的联合后验概率，数组
             b_start_prob = np.zeros(self.n_state) # 批量累积初始概率
@@ -219,7 +219,7 @@ class _BaseHMM():
 
         for e in range(self.n_iter):  # EM步骤迭代
             # 中间参数
-            print e, " iter"
+            print(e, " iter")
             # E步骤
             # 向前向后传递因子
             alpha, c = self.forward(X, Z)  # P(x,z)

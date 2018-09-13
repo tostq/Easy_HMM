@@ -28,7 +28,7 @@ for i in range(x_num):
     c = np.array([i])
     x_next[i] = dice_hmm.predict(X, i)
 
-print "state: ", Z
-print "logprob: ", logprob
-print "prob of x_next: ", x_next
+print("state: ", Z)
+print("logprob: ", logprob)
+print("prob of x_next: ", x_next)
 
